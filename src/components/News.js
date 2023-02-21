@@ -1,4 +1,4 @@
-// a4cc90b77e91426f9f474fe2d4d76352
+// ${this.props.apiKey}
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import NewsItem from './NewsItem.js'
@@ -35,7 +35,7 @@ export class News extends Component {
 
   async componentDidMount() {
     this.props.setProgress(10);
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a4cc90b77e91426f9f474fe2d4d76352&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -51,7 +51,7 @@ export class News extends Component {
 
   /* for handing the next button click
   handleNextClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a4cc90b77e91426f9f474fe2d4d76352&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -65,7 +65,7 @@ export class News extends Component {
 
  /* for handling the previous button click
   handlePrevClick = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a4cc90b77e91426f9f474fe2d4d76352&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -79,7 +79,7 @@ export class News extends Component {
 
   // for infinte scrolling component
   fetchMoreData = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=a4cc90b77e91426f9f474fe2d4d76352&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     this.setState({
@@ -110,7 +110,7 @@ export class News extends Component {
             <div className='row'>
               {this.state.articles.map((element) => {
                 return (<div className='col-md-4' key={element.url}>
-                  <NewsItem title={element.title ? element.title.slice(0, 40) : ""}
+                  <NewsItem title={element.title===""? element.title.slice(0, 40) : ""}
                     description={element.description ? element.description.slice(0, 90) : ""}
                     imageUrl={element.urlToImage ? element.urlToImage : "https://static.toiimg.com/thumb/imgsize-37494,msid-97672613,width-400,resizemode-4/97672613.jpg"}
                     newsUrl={element.url}

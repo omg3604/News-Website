@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const NavBar = () => {
     return ( 
         <div>
-            <nav className='fixed-top'>
+            <nav className='fixed-top'> 
                 <input type="checkbox" id="check" />
                 <label htmlFor="check" className="checkbtn">
                     <i className="fas fa-bars"></i>
